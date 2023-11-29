@@ -8,7 +8,7 @@
 import UIKit
 
 class ChatCollectionViewCell: UICollectionViewCell {
-    
+    static let id = "chatCell"
     let contactImageView = UIImageView()
     
     let titleLabel = UILabel()
@@ -21,31 +21,39 @@ class ChatCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         let arrayOfLabels = [titleLabel, subtitleLabel, descriptionLabel]
         
-        parametersForStackView()
-        parametersForImageView()
-        
         contentView.addSubview(contactImageView)
         contentView.addSubview(stackTitleView)
+        parametersForImageView()
+        parametersForStackView()
         
-        NSLayoutConstraint.activate([
-            contactImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            contactImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            contactImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 10),
-            contactImageView.heightAnchor.constraint(equalTo: contactImageView.widthAnchor, multiplier: 1),
-        ])
         
         func parametersForStackView(){
-            stackTitleView.spacing = 5
+            stackTitleView.spacing = 2
+            stackTitleView.axis = .vertical
             stackTitleView.translatesAutoresizingMaskIntoConstraints = false
             for i in 0...2 {
                 arrayOfLabels[i].textAlignment = .left
+                arrayOfLabels[i].heightAnchor.constraint(equalToConstant: 10).isActive = true
                 stackTitleView.addArrangedSubview(arrayOfLabels[i])
             }
+            NSLayoutConstraint.activate([
+                stackTitleView.leadingAnchor.constraint(equalTo: contactImageView.trailingAnchor, constant: 5),
+                stackTitleView.topAnchor.constraint(equalTo: contentView.topAnchor),
+                stackTitleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                stackTitleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            ])
             
         }
+        
         func parametersForImageView(){
             contactImageView.translatesAutoresizingMaskIntoConstraints = false
-            contactImageView.layer.cornerRadius = 0.5
+            contactImageView.layer.cornerRadius = 100
+            NSLayoutConstraint.activate([
+                contactImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+                contactImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+                contactImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 10),
+                contactImageView.heightAnchor.constraint(equalTo: contactImageView.widthAnchor, multiplier: 1),
+            ])
         }
     }
     
