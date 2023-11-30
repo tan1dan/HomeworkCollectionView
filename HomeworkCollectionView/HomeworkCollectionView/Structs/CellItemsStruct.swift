@@ -7,9 +7,9 @@
 
 import UIKit
 
-struct ChatItem: Hashable {
+struct CellItem: Hashable {
     var title: String
-    var subtitle: String
-    var descriptionTitle: String
-    var image: UIImage
+    var subtitle: String?
+    var descriptionTitle: String?
+    var image: UIImage?
 }
