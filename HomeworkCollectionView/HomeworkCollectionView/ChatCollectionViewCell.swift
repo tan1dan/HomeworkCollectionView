@@ -28,7 +28,7 @@ class ChatCollectionViewCell: UICollectionViewCell {
         
         
         func parametersForStackView(){
-            stackTitleView.spacing = 2
+            stackTitleView.spacing = 1
             stackTitleView.axis = .vertical
             stackTitleView.translatesAutoresizingMaskIntoConstraints = false
             for i in 0...2 {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct CellItems: Hashable {
+struct ChatItem: Hashable {
     var title: String
     var subtitle: String
     var descriptionTitle: String

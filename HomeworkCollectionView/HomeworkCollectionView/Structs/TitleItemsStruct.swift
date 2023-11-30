@@ -7,6 +7,6 @@
 
 import UIKit
 
-struct TitleItems: Hashable {
+struct TitleItem: Hashable {
     var title: String
 }
