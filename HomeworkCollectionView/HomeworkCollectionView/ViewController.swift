@@ -25,7 +25,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillChatItems()
-//        fillTitleItems()
+        fillTitleItems()
         view.addSubview(collectionView)
         print("Start")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 //        }
         var firstSnapshot = NSDiffableDataSourceSnapshot<Section, CellItem>()
         firstSnapshot.appendSections([.first, .second])
-        firstSnapshot.appendItems(chatItems, toSection: .first)
+        firstSnapshot.appendItems(titleItems, toSection: .first)
         firstSnapshot.appendItems(chatItems, toSection: .second)
         firstDataSource.apply(firstSnapshot, animatingDifferences: true)
         
@@ -84,18 +84,18 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-//    func fillTitleItems(){
-//        for i in 1...10 {
-//            titleItems.append(TitleItem(title: "title\(i)"))
-//        }
-//    }
+    func fillTitleItems(){
+        for i in 1...10 {
+            titleItems.append(CellItem(title: "title\(i)"))
+        }
+    }
     func getCompositionalLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (section, environment) ->
             NSCollectionLayoutSection? in
             if section == 0 {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/8))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let layoutSection = NSCollectionLayoutSection(group: group)
                 layoutSection.orthogonalScrollingBehavior = .continuous
@@ -106,7 +106,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
                 let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
                 let layoutSection = NSCollectionLayoutSection(group: group)
-                
+                layoutSection.interGroupSpacing = 10
+                let decoration = NSCollectionLayoutDecorationItem.background(elementKind: "separator")
                 return layoutSection
             }
         }

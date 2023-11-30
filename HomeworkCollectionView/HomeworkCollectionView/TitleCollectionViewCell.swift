@@ -17,6 +17,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .systemGray4
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font.withSize(10)
+        label.textAlignment = .center
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

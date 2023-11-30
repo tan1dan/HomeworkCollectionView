@@ -28,18 +28,19 @@ class ChatCollectionViewCell: UICollectionViewCell {
         
         
         func parametersForStackView(){
-            stackTitleView.spacing = 1
+            stackTitleView.spacing = 3
+            stackTitleView.distribution = .fillEqually
             stackTitleView.axis = .vertical
             stackTitleView.translatesAutoresizingMaskIntoConstraints = false
             for i in 0...2 {
                 arrayOfLabels[i].textAlignment = .left
-                arrayOfLabels[i].heightAnchor.constraint(equalToConstant: 10).isActive = true
+//                arrayOfLabels[i].heightAnchor.constraint(equalToConstant: 10).isActive = true
                 stackTitleView.addArrangedSubview(arrayOfLabels[i])
             }
             NSLayoutConstraint.activate([
                 stackTitleView.leadingAnchor.constraint(equalTo: contactImageView.trailingAnchor, constant: 5),
-                stackTitleView.topAnchor.constraint(equalTo: contentView.topAnchor),
-                stackTitleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                stackTitleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+                stackTitleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 10),
                 stackTitleView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
             
@@ -47,7 +48,9 @@ class ChatCollectionViewCell: UICollectionViewCell {
         
         func parametersForImageView(){
             contactImageView.translatesAutoresizingMaskIntoConstraints = false
-            contactImageView.layer.cornerRadius = 100
+            contactImageView.contentMode = .scaleAspectFill
+            contactImageView.layer.cornerRadius = 50
+            contactImageView.clipsToBounds = true
             NSLayoutConstraint.activate([
                 contactImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
                 contactImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
